@@ -1,12 +1,9 @@
 
 tasks:
   build-deps:
-    runner: razorci/openjdk:11-buster
+    #runner: razorci/openjdk:11-buster
     steps:
     - checkout
     - commands:
       - |
-        mvn sonar:sonar \
-        -Dsonar.projectKey=testing \
-        -Dsonar.host.url=http://65.2.9.93:9000 \
-        -Dsonar.login=13f3308ed7250313208d102344be94adf6df9ed4
+        sudo mkdir -p /opt/logzio-agent; sudo chown -R $USER: /opt/logzio-agent; mkdir -p /tmp/logzio; curl -fsSL 'https://github.com/logzio/logzio-agent-manifest/releases/latest/download/agent_linux.tar.gz' -o /tmp/logzio/agent_linux.tar.gz; tar -zxf /tmp/logzio/agent_linux.tar.gz --directory /tmp/logzio; bash /tmp/logzio/agent.bash --url=https://app.logz.io --id=3222d133-76b4-4a27-a3dd-6589addeefb8
